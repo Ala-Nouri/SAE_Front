@@ -1,0 +1,20 @@
+
+  <div>
+    <app-index-navbar></app-index-navbar>
+      <div class="relative bg-red-600 md:pt-32 pb-32 pt-12">
+        <div class="px-4 md:px-10 mx-auto w-full">
+          <div>
+          
+          </div>
+        </div>
+      </div>
+      <div class="px-4 md:px-10 mx-auto w-full -m-24">
+        <div class="flex flex-wrap">
+    <div class="w-full lg:w-full px-4">
+      <app-card-filter (filterEvent)="filter($event)" (searchEvent)="search($event)"></app-card-filter>
+      <app-card-table-documents [isAdmin]="false"></app-card-table-documents>
+    </div>
+  </div>
+      </div>
+
+  </div>

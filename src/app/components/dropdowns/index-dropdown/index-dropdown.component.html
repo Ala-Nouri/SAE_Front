@@ -1,0 +1,42 @@
+<a
+  class="hover:text-blueGray-500 text-blueGray-700 px-3 py-2 flex items-center text-xs uppercase font-bold"
+  href="#pablo"
+  (click)="toggleDropdown($event)"
+  #btnDropdownRef
+>
+  Menu
+</a>
+<div
+  *ngIf="isAdmin"
+  class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
+  [ngClass]="dropdownPopoverShow ? 'block' : 'hidden'"
+  #popoverDropdownRef
+>
+  <a
+    [routerLink]="['/admin/dashboard']"
+    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+  >
+    Dashboard
+  </a>
+  <a
+    [routerLink]="['/documents']"
+    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+  >
+    Documents
+  </a>
+
+</div>
+<div
+  *ngIf="!isAdmin"
+  class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
+  [ngClass]="dropdownPopoverShow ? 'block' : 'hidden'"
+  #popoverDropdownRef
+>
+  <a
+    [routerLink]="['/documents']"
+    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+  >
+    Documents
+  </a>
+
+</div>

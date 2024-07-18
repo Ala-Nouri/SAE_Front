@@ -1,0 +1,6 @@
+<div class="flex flex-wrap">
+  <div class="w-full lg:w-full px-4">
+    <app-card-filter (filterEvent)="filter($event)" (searchEvent)="search($event)"></app-card-filter>
+    <app-card-table-documents [isAdmin]="true" #child></app-card-table-documents>
+  </div>
+</div>

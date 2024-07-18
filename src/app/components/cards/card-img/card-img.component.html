@@ -1,0 +1,7 @@
+<div class="container w-full">
+    <p-galleria [value]="urls" [numVisible]="5" [circular]="true" [showItemNavigators]="true" [showThumbnails]="false"  [containerStyle]="{ 'max-width': '640px' }">
+        <ng-template pTemplate="item" let-item>
+            <img [src]="item"/>
+        </ng-template>
+    </p-galleria>
+</div>

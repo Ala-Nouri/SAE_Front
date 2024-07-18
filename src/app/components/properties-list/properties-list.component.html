@@ -1,0 +1,34 @@
+<div *ngFor="let prop of data" class="flex px-4 pt-0">
+  <div class="flex px-4 pt-0">
+    <mat-checkbox 
+    [checked]="prop.check"
+    color="primary"
+    (change)="setAll(prop,$event.checked)">
+    <div *ngIf="!prop.value">
+      {{prop.name}}:
+    </div>
+  </mat-checkbox> 
+  <mat-form-field *ngIf="prop.value" class="w-full">
+    <mat-label>{{prop.name}}</mat-label>
+    <input matInput [formControl]="prop.value">
+  </mat-form-field>
+  </div>
+  <div *ngIf="prop.subprops">
+    <div *ngFor="let subprop of prop.subprops">
+        <div *ngIf="!isArray(subprop)" class="flex px-4 pt-0">
+          <mat-checkbox 
+            [checked]="subprop.check"
+            color="primary"
+            (change)="setParent(prop,subprop,$event.checked)">
+          </mat-checkbox>
+          <mat-form-field class="w-full">
+            <mat-label>{{subprop.name}}</mat-label>
+            <input matInput [formControl]="subprop.value">
+          </mat-form-field>
+        </div>
+        <div *ngIf="isArray(subprop)">
+            <app-properties-list [data]="subprop" (childEvent)="onChildEvent(prop)"></app-properties-list>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div  *ngIf="!progress" class="container">
+    <ngx-dropzone class="m-4 items-center justify-center flex" accept="image/*" (change)="onSelect($event)">
+        <ngx-dropzone-label>Please drop document here</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+    </ngx-dropzone>
+    <div class="container items-baseline justify-end flex-row flex">
+        <button
+        class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none m-4 ease-linear transition-all duration-150"
+        type="button"
+        (click)="upload()"
+        >
+        Upload
+        </button>
+    </div>
+</div>
+<div  *ngIf="progress" class="container flex items-center justify-center">
+    <mat-spinner></mat-spinner>
+</div>

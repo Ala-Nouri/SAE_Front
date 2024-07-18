@@ -1,0 +1,21 @@
+  <h2 mat-dialog-title> assign roles to {{data.firstName}} {{data.lastName}}</h2>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="roleForm">  
+    <div *ngFor="let role of roleList" class="flex flex-row gap-6 p-2 items-end">
+        <input
+            class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+            type="checkbox" 
+            formControlName = {{role.id}} >
+            <label
+              class="block uppercase text-blueGray-600 text-xs font-bold"
+              htmlFor="grid-password"
+            >
+            {{role.name}}
+            </label>    
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="assign()">Assign</button>
+  </mat-dialog-actions>

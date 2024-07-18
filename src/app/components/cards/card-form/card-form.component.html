@@ -1,0 +1,84 @@
+<div class="rounded-t mb-0 px-6 py-6 max-h-860-px">
+  <mat-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <ng-template matStepLabel>Classification</ng-template>
+    <form [formGroup]="firstFormGroup">
+      <div class="text-center mb-3">
+        <h6 class="text-blueGray-500 text-sm font-bold">Document Category</h6>
+      </div>
+      <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+        <mat-form-field class="w-full">
+          <mat-label>The document category is ....</mat-label>
+          <mat-select formControlName="category" (selectionChange)="change()">
+            <mat-option *ngFor="let option of categories" value={{option}}>{{option}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="text-center mb-3">
+        <h6 class="text-blueGray-500 text-sm font-bold">Document Subcategory</h6>
+      </div>
+      <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+        <mat-form-field class="w-full">
+          <mat-label>The document subcategory is ....</mat-label>
+          <mat-select formControlName="subcategory">
+            <mat-option *ngFor="let option of subcategories" value={{option}}>{{option}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+    <div>
+      <button class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+      mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Path</ng-template>
+    <form [formGroup]="secondFormGroup">
+      <div class="text-center mb-3">
+        <h6 class="text-blueGray-500 text-sm font-bold">Document Name</h6>
+      </div>
+      <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+        <mat-form-field class="w-full">
+          <mat-label>The document will be saved as....</mat-label>
+          <input matInput formControlName="fileName">
+        </mat-form-field>
+      </div>
+      <div class="text-center mb-3">
+        <h6 class="text-blueGray-500 text-sm font-bold">Document Path</h6>
+      </div>
+      <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+        <mat-form-field class="w-full">
+          <mat-label>The document will be saved at....</mat-label>
+          <input matInput formControlName="path">
+        </mat-form-field>
+      </div>
+      <div>
+        <button class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        mat-button matStepperPrevious>Back</button>
+        <button class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Properties</ng-template>
+    <div class="h-600-px overflow-y-scroll">
+      <app-properties-list [data]="propertiesControl" class="block"></app-properties-list> 
+    </div> 
+  </mat-step>
+</mat-stepper>
+    
+    
+        <div class="flex justify-end mt-6">
+          <button
+            class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            (click)="create()"
+          >
+            Validate
+          </button>
+        </div>
+        
+</div>
+  
+    

@@ -1,0 +1,126 @@
+<div
+  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
+  [ngClass]="color === 'light' ? 'bg-white' : 'bg-red-900 text-white'"
+>
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center">
+      <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+        <h3
+          class="font-semibold text-lg"
+          [ngClass]="color === 'light' ? 'text-blueGray-700' : 'text-white'"
+        >
+          Documents
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="block w-full overflow-x-auto">
+    <!-- Users table -->
+    <table class="items-center w-full bg-transparent border-collapse">
+      <thead>
+        <tr>
+          <th
+            class="header-cell text-sm"
+            *ngFor="let head of header"
+            [ngClass]="
+              color === 'light'
+                ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+                : 'bg-red-800 text-red-300 border-red-700'
+            "
+          >
+            {{ head }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let doc of filteredDocList">
+          <td colspan="6" class="p-0">
+            <mat-expansion-panel hideToggle class="px-0">
+              <mat-expansion-panel-header class="px-0">
+                <mat-panel-title>
+                  <div class="w-full flex">
+                    <div class="cell">
+                      <span
+                        class="text-sm"
+                        [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'"
+                      >
+                        {{ doc.document_id }}
+                      </span>
+                    </div>
+                    <div class="cell">
+                      <span
+                        class="text-sm"
+                        [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'"
+                      >
+                        {{ doc.file_name }}
+                      </span>
+                    </div>
+                    <div class="cell">
+                      <span
+                        class="text-sm"
+                        [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'"
+                      >
+                        {{ doc.upload_date | date:'short' }}
+                      </span>
+                    </div>
+                    <div class="cell">
+                      <span
+                        class="text-sm"
+                        [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'"
+                      >
+                        {{ doc.created_by.firstName }} {{ doc.created_by.lastName }}
+                      </span>
+                    </div>
+                    <div class="cell">
+                      <span
+                        class="text-sm"
+                        [ngClass]="color === 'light' ? 'text-blueGray-600' : 'text-white'"
+                      >
+                        {{ doc.file_path }}
+                      </span>
+                    </div>
+                    <div class="cell">
+                      <i
+                        (click)="view(doc)"
+                        role="button"
+                        class="fas fa-eye mr-2 text-sm px-4"
+                        [ngClass]="color === 'light' ? 'text-blueGray-300' : 'text-blueGray-300'"
+                      ></i>
+                      <i
+                        *ngIf="isAdmin && !doc.archived"
+                        (click)="remove(doc)"
+                        role="button"
+                        class="fas fa-trash-can mr-2 text-sm px-4"
+                        [ngClass]="color === 'light' ? 'text-blueGray-300' : 'text-blueGray-300'"
+                      ></i>
+                      <i
+                        *ngIf="isAdmin && !doc.archived"
+                        (click)="archive(doc)"
+                        role="button"
+                        class="fas fa-file-shield mr-2 text-sm px-4"
+                        [ngClass]="color === 'light' ? 'text-blueGray-300' : 'text-blueGray-300'"
+                      ></i>
+                      <i
+                        *ngIf="isAdmin && doc.archived"
+                        (click)="archive(doc)"
+                        role="button"
+                        class="fas fa-file-pen mr-2 text-sm px-4"
+                        [ngClass]="color === 'light' ? 'text-blueGray-300' : 'text-blueGray-300'"
+                      ></i>
+                    </div>
+                  </div>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <table>
+                <tr *ngFor="let prop of doc.properties">
+                  <th>{{prop.property_name}} : </th>
+                  <td>{{prop.property_value}}</td>
+                </tr>
+              </table>
+            </mat-expansion-panel>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
